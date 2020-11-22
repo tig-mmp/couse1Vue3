@@ -30,7 +30,8 @@ const app = createApp({
     </div>
     <br>
     <h2>Input</h2>
-    <input @input="input" :value="value" />
+    <input v-model="value" />
+    {{value}}
     <div v-if="error">{{error}}</div>
     <br>
   `,
@@ -57,9 +58,6 @@ const app = createApp({
     };
   },
   methods: {
-    input($evt) {
-      this.value = $evt.target.value;
-    },
     getClass(number) {
       return this.isEven(number) ? "red" : "blue";
     },
