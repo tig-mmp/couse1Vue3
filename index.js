@@ -1,9 +1,20 @@
 import { createApp } from "vue/dist/vue.esm-browser.js";
 
+const Hello = {
+  template: `
+    <h3>Hello from component</h3>
+  `,
+};
+
 const app = createApp({
+  components: {
+    Hello,
+  },
   template: `
 		<h1>Hello {{msg}}</h1>
 		<p>{{person}}</p>
+    <br>
+    <hello></hello>
     <br>
 		<h2>Increment</h2>
 		<button @click="increment(5)">Increment</button>
