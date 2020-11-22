@@ -20,10 +20,36 @@ const Num = {
   `,
 };
 
+const Numb = {
+  props: {
+    number: {
+      type: Number,
+      required: true,
+    },
+  },
+  template: `
+    <button :class="getClass(number)" @click="handleClick">
+      {{number}}
+    </button>
+  `,
+  methods: {
+    handleClick() {
+      this.$emit("chosen", this.number);
+    },
+    getClass(number) {
+      return this.isEven(number) ? "red" : "blue";
+    },
+    isEven(count) {
+      return count % 2 === 0;
+    },
+  },
+};
+
 const app = createApp({
   components: {
     Hello,
     Num,
+    Numb,
   },
   template: `
 		<h1>Hello {{msg}}</h1>
@@ -60,6 +86,11 @@ const app = createApp({
     {{value}}
     <div v-if="error">{{error}}</div>
     <br>
+    <h2>Child/Parent</h2>
+    <numb v-for="number in numbers" :number="number" @chosen="putInArray"></numb>
+    <h3>Clicked Numbers</h3>
+    <numb v-for="number in clickedNumbers" :number="number"></numb>
+    <br>
   `,
   computed: {
     evenList() {
@@ -81,9 +112,13 @@ const app = createApp({
       count: 0,
       numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       value: "User",
+      clickedNumbers: [],
     };
   },
   methods: {
+    putInArray(number) {
+      this.clickedNumbers.push(number);
+    },
     getClass(number) {
       return this.isEven(number) ? "red" : "blue";
     },
