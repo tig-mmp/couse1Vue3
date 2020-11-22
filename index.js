@@ -18,12 +18,15 @@ const app = createApp({
     </div>
     <br>
     <h2>V-FOR</h2>
-    <div v-for="number in numbers">
-      <div v-show="isEven(number)">
-        {{number}}
-      </div>
+    <div v-for="number in evenList">
+      {{number}}
     </div>
-	`,
+  `,
+  computed: {
+    evenList() {
+      return this.numbers.filter(this.isEven);
+    },
+  },
   data() {
     return {
       msg: "world",
