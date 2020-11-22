@@ -4,10 +4,18 @@ const app = createApp({
   template: `
 		<h1>Hello {{msg}}</h1>
 		<p>{{person}}</p>
-
+    <br>
 		<h2>Increment</h2>
-		<button v-on:click="increment()">Increment</button>
-		<p>{{count}}</p>
+		<button v-on:click="increment(5)">Increment</button>
+    <p>{{count}}</p>
+    <br>
+    <h2>V-IF</h2>
+    <div v-if="isEven(count)">
+      Even
+    </div>
+    <div v-else>
+      Odd
+    </div>
 	`,
   data() {
     return {
@@ -20,8 +28,11 @@ const app = createApp({
     };
   },
   methods: {
-    increment() {
-      this.count += 1;
+    increment(val) {
+      this.count += val;
+    },
+    isEven(count) {
+      return count % 2 === 0;
     },
   },
 }).mount("#app");
