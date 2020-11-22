@@ -6,9 +6,24 @@ const Hello = {
   `,
 };
 
+const Num = {
+  props: {
+    number: {
+      type: Number,
+      required: true,
+    },
+  },
+  template: `
+    <div>
+      {{number}}
+    </div>
+  `,
+};
+
 const app = createApp({
   components: {
     Hello,
+    Num,
   },
   template: `
 		<h1>Hello {{msg}}</h1>
@@ -30,13 +45,13 @@ const app = createApp({
     <br>
     <h2>V-FOR</h2>
     <div v-for="number in evenList">
-      {{number}}
+      <num :number="number"></num>
     </div>
     <br>
     <h2>V-BIND</h2>
     <div v-for="number in numbers">
       <div :class="getClass(number)" :title="number">
-        {{number}}
+        <num :number="number"></num>
       </div>
     </div>
     <br>
