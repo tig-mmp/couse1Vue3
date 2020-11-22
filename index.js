@@ -6,7 +6,7 @@ const app = createApp({
 		<p>{{person}}</p>
     <br>
 		<h2>Increment</h2>
-		<button v-on:click="increment(5)">Increment</button>
+		<button @click="increment(5)">Increment</button>
     <p>{{count}}</p>
     <br>
     <h2>V-IF</h2>
@@ -20,6 +20,12 @@ const app = createApp({
     <h2>V-FOR</h2>
     <div v-for="number in evenList">
       {{number}}
+    </div>
+    <h2>V-BIND</h2>
+    <div v-for="number in numbers">
+      <div :class="getClass(number)" :title="number">
+        {{number}}
+      </div>
     </div>
   `,
   computed: {
@@ -39,6 +45,9 @@ const app = createApp({
     };
   },
   methods: {
+    getClass(number) {
+      return this.isEven(number) ? "red" : "blue";
+    },
     increment(val) {
       this.count += val;
     },
