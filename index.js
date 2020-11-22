@@ -16,6 +16,13 @@ const app = createApp({
     <div v-else>
       Odd
     </div>
+    <br>
+    <h2>V-FOR</h2>
+    <div v-for="number in numbers">
+      <div v-show="isEven(number)">
+        {{number}}
+      </div>
+    </div>
 	`,
   data() {
     return {
@@ -25,6 +32,7 @@ const app = createApp({
         age: 23,
       },
       count: 0,
+      numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     };
   },
   methods: {
