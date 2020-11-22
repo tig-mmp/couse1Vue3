@@ -1,0 +1,11 @@
+{
+  "name": "couse1Vue3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/tig-mmp/couse1Vue3.git",
+  "author": "Tiago Pinto <tigmmp@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "vite": "^1.0.0-rc.9"
+  }
+}
