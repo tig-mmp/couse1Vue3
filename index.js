@@ -21,16 +21,27 @@ const app = createApp({
     <div v-for="number in evenList">
       {{number}}
     </div>
+    <br>
     <h2>V-BIND</h2>
     <div v-for="number in numbers">
       <div :class="getClass(number)" :title="number">
         {{number}}
       </div>
     </div>
+    <br>
+    <h2>Input</h2>
+    <input @input="input" :value="value" />
+    <div v-if="error">{{error}}</div>
+    <br>
   `,
   computed: {
     evenList() {
       return this.numbers.filter(this.isEven);
+    },
+    error() {
+      if (this.value.length < 7) {
+        return "Too short";
+      }
     },
   },
   data() {
@@ -42,9 +53,13 @@ const app = createApp({
       },
       count: 0,
       numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      value: "User",
     };
   },
   methods: {
+    input($evt) {
+      this.value = $evt.target.value;
+    },
     getClass(number) {
       return this.isEven(number) ? "red" : "blue";
     },
